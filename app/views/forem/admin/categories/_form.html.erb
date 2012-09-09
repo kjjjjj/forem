@@ -1,4 +1,6 @@
 <%= simple_form_for [forem, :admin, @category] do |f| %>
-  <%= f.input :name %>
-  <%= f.submit %>
+  <div class="control-group">
+    <%= f.input :name, :input_html => {:class => 'input-xxlarge'} %>
+  </div>
+  <%= f.submit 'Save Category', :class => 'btn btn-primary' %>
 <% end %>

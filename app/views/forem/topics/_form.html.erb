@@ -1,9 +1,11 @@
 <%= simple_form_for [forem, @forum, @topic] do |f| %>
-  <%= f.input :subject %>
+  <div class="control-group">
+    <%= f.input :subject, :input_html => {:class => 'input-xxlarge'} %>
+  </div>
 
   <%= f.simple_fields_for :posts do |post| %>
     <%= render :partial => "forem/posts/form", :locals => { :f => post }%>
   <% end %>
   
-  <%= f.submit %>
+  <%= f.submit @topic.persisted? ? 'Update Topic' : 'Create Topic', :class => 'btn btn-primary' %>
 <% end %>

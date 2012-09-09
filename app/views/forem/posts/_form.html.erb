@@ -1,4 +1,6 @@
-<%= f.input :text %>
+<div class="control-group">
+  <%= f.input :text, :required => false, :input_html => {:rows => 6, :cols => 53, :class => 'input-xxlarge'} %>
+</div>
 
 <% if params[:reply_to_id] %>
   <%= f.hidden_field :reply_to_id, :value => params[:reply_to_id] %>

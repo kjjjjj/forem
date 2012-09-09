@@ -1,6 +1,8 @@
 <h2><%= t('forem.admin.group.members', :group => forem_emojify(@group.name)) %></h2>
 
-<%= text_field_tag "new_member" %><%= button_tag t(".add_member"), :disabled => true, :id => "add_member", "data-group-id" => "#{@group.id}"  %>
+<div class="form-inline">
+  <%= text_field_tag "new_member" %> <%= button_tag t(".add_member"), :disabled => true, :id => "add_member", :class => 'btn btn-primary', "data-group-id" => "#{@group.id}"  %>
+</div>
 
 <ul id='members'>
   <% @group.members.each do |member| %>

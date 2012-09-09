@@ -9,9 +9,11 @@
   </div>
 
   <div class='contents'>
+    <div class="pull-right">
     <a href='#post-<%= post.id %>'>
       <time datetime="<%= post.created_at.to_s(:db) -%>"><%= "#{time_ago_in_words(post.created_at)} #{t("ago")}" %></time>
     </a>
+    </div>
     <%= forem_format(post.text) %>
 
     <% if post.reply_to %>
@@ -20,4 +22,5 @@
       </span>
     <% end %>
   </div>
+  <div class="clearfix"></div>
 </div>
