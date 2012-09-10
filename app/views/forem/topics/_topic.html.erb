@@ -4,7 +4,7 @@
       <i class="icon-lock"></i>
     <% end %>
     <% if topic.pinned? %>
-      <i class="icon-tag"></i>
+      <i class="icon-star"></i>
     <% end %>
     <% if forem_user && view = topic.view_for(forem_user) %>
       <% if topic.posts.exists?(["created_at > ?", view.updated_at]) %>
