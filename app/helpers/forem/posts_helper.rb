@@ -22,9 +22,8 @@ module Forem
     end
 
     def title_badges(user)
-      user.forum_badges.collect do |color, name|
-        %(<span class="label label-#{color}">#{name}</span>)
-      end.join(' ').html_safe
+      color, name = user.forum_badges
+      %(<span class="label label-#{color}">#{name}</span>).html_safe
     end
 
     def default_gravatar
