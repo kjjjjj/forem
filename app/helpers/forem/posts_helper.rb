@@ -21,6 +21,12 @@ module Forem
       "#{request.ssl? ? 'https://secure' : 'http://www'}.gravatar.com/avatar/#{md5}?#{options.to_param}"
     end
 
+    def title_badges(user)
+      user.forum_badges.collect do |color, name|
+        %(<span class="label label-#{color}">#{name}</span>)
+      end.join(' ').html_safe
+    end
+
     def default_gravatar
       image = Forem.default_gravatar_image
 
