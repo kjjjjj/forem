@@ -1,7 +1,7 @@
 <a name='post-<%= post.id %>'></a>
 <div id='post_<%= post.id %>' class='reply_to_post post <%= cycle('odd', 'even') -%>'>
 
-  <div class='user'>
+  <div class='user span2'>
     <div class='username'>
       <%= link_to_if Forem.user_profile_links, post.user, [main_app, post.user] %>
     </div>
@@ -9,7 +9,7 @@
     <p><%= title_badges(post.user) %></p>
   </div>
 
-  <div class='contents'>
+  <div class='contents span10'>
     <div class="pull-right">
     <a href='#post-<%= post.id %>'>
       <time datetime="<%= post.created_at.to_s(:db) -%>"><%= "#{time_ago_in_words(post.created_at)} #{t("ago")}" %></time>
