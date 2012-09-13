@@ -4,10 +4,18 @@
   <tr>
     <td>
       <div class="vote">
-        <input type="hidden" value="12409455">
-        <a class="vote-up-off <%= forem_user.voted_for?(topic) ? 'vote-up-on' : '' %>" data-forum-id="<%= topic.forum.to_param %>" data-topic-id="<%= topic.to_param %>" title="This answer is useful (click again to undo)">up vote</a>
-        <span class="vote-count-post"><%= topic.plusminus %></span>
-        <a class="vote-down-off <%= forem_user.voted_against?(topic) ? 'vote-down-on' : '' %>" data-forum-id="<%= topic.forum.to_param %>" data-topic-id="<%= topic.to_param %>" title="This answer is not useful (click again to undo)">down vote</a>
+        <% his_own_topic = forem_user == topic.user %>
+        <% unless his_own_topic %>
+          <a class="vote-up-off <%= forem_user.voted_for?(topic) ? 'vote-up-on' : '' %>"
+            data-forum-id="<%= topic.forum.to_param %>"
+            data-topic-id="<%= topic.to_param %>">up vote</a>
+
+          <span class="vote-count-post"><%= topic.plusminus %></span>
+
+          <a class="vote-down-off <%= forem_user.voted_against?(topic) ? 'vote-down-on' : '' %>"
+            data-forum-id="<%= topic.forum.to_param %>"
+            data-topic-id="<%= topic.to_param %>">down vote</a>
+        <% end %>
       </div>
     </td>
     <td>
