@@ -47,6 +47,20 @@ module Forem
       redirect_to @topic.forum
     end
 
+    def vote_up
+      if find_topic
+        forem_user.vote_exclusively_for(@topic)
+        render :text => @topic.plusminus
+      end
+    end
+
+    def vote_down
+      if find_topic
+        forem_user.vote_exclusively_against(@topic)
+        render :text => @topic.plusminus
+      end
+    end
+
     def subscribe
       if find_topic
         @topic.subscribe_user(forem_user.id)

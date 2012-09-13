@@ -4,6 +4,8 @@ Forem::Engine.routes.draw do
   resources :forums, :only => [:index, :show] do
     resources :topics do
       member do
+        post :vote_up
+        post :vote_down
         get :subscribe
         get :unsubscribe
       end

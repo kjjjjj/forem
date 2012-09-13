@@ -27,4 +27,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'workflow', '0.8.0'
   s.add_dependency 'friendly_id', '~> 4.0'
   s.add_dependency 'gemoji', '~> 1.1.1'
+  s.add_dependency 'thumbs_up', '~> 0.6'
 end

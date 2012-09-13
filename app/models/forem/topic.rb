@@ -5,6 +5,8 @@ module Forem
     include Forem::Concerns::Viewable
     include Workflow
 
+    acts_as_voteable
+
     workflow_column :state
     workflow do
       state :pending_review do
