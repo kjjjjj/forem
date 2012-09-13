@@ -22,6 +22,7 @@
   </div>
 
   <% if forem_admin? %>
+    <!--
     <br>
     <div class="btn-group">
       <%= link_to forem.toggle_hide_admin_topic_path(@topic), :method => :put, :class => 'btn' do %>
@@ -44,8 +45,9 @@
         <%= t(".pin.#{@topic.pinned}") %>
       <% end %>
     </div>
-    <br>
+    -->
   <% end %>
+  <br>
 
   <% if @topic.pending_review? %>
     <div class="moderation" id='topic_moderation'>
