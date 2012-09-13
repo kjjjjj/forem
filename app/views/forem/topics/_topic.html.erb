@@ -1,5 +1,11 @@
 <tr class="topic <%= cycle('odd', 'even') %> <%= topic.locked? ? 'locked' : 'unlocked' %>">
-  <td class='icon'>
+  <td class='icon' style="width: 20px">
+
+    <div class="votes">
+      <div class="mini-counts"><%= topic.plusminus %></div>
+      <div><%= 'vote'.pluralize(topic.plusminus.abs) %></div>
+    </div>
+
     <% if topic.locked? %>
       <i class="icon-lock"></i>
     <% end %>
