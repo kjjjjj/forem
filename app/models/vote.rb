@@ -19,9 +19,9 @@ class Vote < ActiveRecord::Base
   private
     def ensure_vote_event_exclusiveness
       options = {
-        :user_id => voter.id,
+        :author_user_id => voter.id,
         :event_type => self.class.to_s,
-        :secondary_subject_id => voteable.id
+        :topic_id => voteable.id
       }
       existing_event_for_this_topic = TimelineEvent.where(options).first
       if existing_event_for_this_topic.present?
@@ -33,10 +33,10 @@ class Vote < ActiveRecord::Base
     def update_activity_stream
       ensure_vote_event_exclusiveness
       create_options = {
-        :user => voter,
+        :author_user_id => voter.id,
         :event_type => self.class.to_s,
-        :subject_id => id,
-        :secondary_subject_id => voteable.id # topic_id
+        :vote_id => id,
+        :topic_id => voteable.id
       }
       TimelineEvent.create!(create_options)
     end
