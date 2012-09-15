@@ -14,4 +14,30 @@ class Vote < ActiveRecord::Base
   # Comment out the line below to allow multiple votes per user.
   validates_uniqueness_of :voteable_id, :scope => [:voteable_type, :voter_type, :voter_id]
 
+  after_save :update_activity_stream
+
+  private
+    def ensure_vote_event_exclusiveness
+      options = {
+        :user_id => voter.id,
+        :event_type => self.class.to_s,
+        :secondary_subject_id => voteable.id
+      }
+      existing_event_for_this_topic = TimelineEvent.where(options).first
+      if existing_event_for_this_topic.present?
+        Rails.logger.debug "Remove previous vote event for this user for this topic"
+        existing_event_for_this_topic.destroy
+      end
+    end
+
+    def update_activity_stream
+      ensure_vote_event_exclusiveness
+      create_options = {
+        :user => voter,
+        :event_type => self.class.to_s,
+        :subject_id => id,
+        :secondary_subject_id => voteable.id # topic_id
+      }
+      TimelineEvent.create!(create_options)
+    end
 end
