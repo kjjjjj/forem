@@ -85,6 +85,22 @@ module Forem
       subject
     end
 
+    def hotness
+      s = views_count
+      s = s + 2 * posts.count
+      s = s + 3 * plusminus # could be positive or negative
+      base_score = Math.log([s, 1].max)
+
+      full_weeks_since_topic_last_update = (Time.now - updated_at).divmod(604800).first
+
+      if full_weeks_since_topic_last_update > 1
+        x = full_weeks_since_topic_last_update - 1
+        base_score = base_score * Math.exp(-8*x*x)
+      end
+
+      base_score
+    end
+
     # Cannot use method name lock! because it's reserved by AR::Base
     def lock_topic!
       update_attribute(:locked, true)
