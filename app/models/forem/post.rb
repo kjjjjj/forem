@@ -31,9 +31,12 @@ module Forem
 
     delegate :forum, :to => :topic
 
+    after_create :check_for_mention
     after_create :set_topic_last_post_at
     after_create :subscribe_replier, :if => :user_auto_subscribe?
     after_create :skip_pending_review
+    after_create :check_for_mention
+
 
     after_save :approve_user,   :if => :approved?
     after_save :blacklist_user, :if => :spam?
@@ -112,10 +115,12 @@ module Forem
       topic.update_attribute(:last_post_at, created_at)
     end
 
-    def skip_pending_review
-      if user.try(:forem_needs_moderation?)
-        update_attribute(:state, 'approved')
-      end
+    def check_for_mention
+      Resque.enqueue(CheckForMention, id)
+    end
+
+    def skip_pending_review_if_user_approved
+      update_attribute(:state, 'approved') if user && user.forem_state == 'approved'
     end
 
     def approve_user
