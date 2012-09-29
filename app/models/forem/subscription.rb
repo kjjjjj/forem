@@ -8,7 +8,7 @@ module Forem
     attr_accessible :subscriber_id
 
     def send_notification(post_id)
-      ::TopicSubscriptionMailer.enqueue.topic_reply(post_id, subscriber.id)
+      ::TopicSubscriptionMailer.topic_reply(post_id, subscriber.id)
     end
   end
 end
