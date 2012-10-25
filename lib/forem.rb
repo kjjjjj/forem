@@ -5,6 +5,7 @@ require 'forem/engine'
 require 'forem/autocomplete'
 require 'forem/default_permissions'
 require 'workflow'
+require 'thumbs_up'
 
 module Forem
   mattr_accessor :user_class, :theme, :formatter, :default_gravatar, :default_gravatar_image,
