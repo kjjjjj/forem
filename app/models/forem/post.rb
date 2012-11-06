@@ -35,7 +35,6 @@ module Forem
     after_create :set_topic_last_post_at
     after_create :subscribe_replier, :if => :user_auto_subscribe?
     after_create :skip_pending_review
-    after_create :check_for_mention
 
 
     after_save :approve_user,   :if => :approved?
