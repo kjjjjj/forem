@@ -31,6 +31,14 @@ module Forem
 
     delegate :forum, :to => :topic
 
+    def appear_at
+      updated_at
+    end
+
+    def author
+      user
+    end
+
     after_create :check_for_mention
     after_create :set_topic_last_post_at
     after_create :subscribe_replier, :if => :user_auto_subscribe?
