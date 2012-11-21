@@ -1,6 +1,6 @@
 <%= simple_form_for([forem, :admin, @group]) do |f| %>
   <div class="control-group">
-    <%= f.input :name %>
+    <%= f.input :name, :input_html => {:class => 'input-xxlarge'} %>
   </div>
-  <%= f.submit @group.persisted? ? 'ZZZ' : 'ZZZZ', :class => 'btn btn-primary' %>
+  <%= f.submit @group.persisted? ? 'Update Group' : 'Create Group', :class => 'btn btn-primary' %>
 <% end %>
