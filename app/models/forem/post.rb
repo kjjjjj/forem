@@ -130,6 +130,12 @@ module Forem
       update_attribute(:state, 'approved') if user && user.forem_state == 'approved'
     end
 
+    def skip_pending_review
+      if user.try(:forem_needs_moderation?)
+        update_attribute(:state, 'approved')
+      end
+    end
+
     def approve_user
       user.update_attribute(:forem_state, "approved") if user && user.forem_state != "approved"
     end
