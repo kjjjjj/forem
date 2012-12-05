@@ -3,7 +3,7 @@ module Forem
     include FormattingHelper
     # processes text with installed markup formatter
     def forem_format(text, *options)
-      forem_emojify(as_formatted_html(text))
+      auto_link(forem_emojify(as_formatted_html(text)), :html => { :rel => 'nofollow' })
     end
 
     def forem_quote(text)
