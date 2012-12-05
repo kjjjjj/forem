@@ -2,6 +2,8 @@
   <tr class="forum <%= cycle("odd", "even") %>">
     <td>
       <%= link_to forem_emojify(forum.title), forem.forum_path(forum), :class => "title" %>
+    </td>
+    <td>
       <div class='description'><%= forem_emojify(forum.description) %></div>
       <%= t('forem.forums.index.last_post') -%>
       <span class='last_post'>
@@ -12,8 +14,8 @@
           <% end %>
         </span>
     </td>
-    <td class="topics-count"><%= topics_count(forum) %></td>
-    <td class="posts-count"><%= posts_count(forum) %></td>
-    <td class="views-count"><%= forum.views_count %></td>
+    <td class="topics-count"><%= pluralize(topics_count(forum), 'Topic') %></td>
+    <td class="posts-count"><%= pluralize(posts_count(forum), 'Posts') %></td>
+    <td class="views-count"><%= pluralize(forum.views_count, 'Views') %></td>
   </tr>
 <% end %>

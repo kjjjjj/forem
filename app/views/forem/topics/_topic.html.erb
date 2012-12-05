@@ -26,6 +26,10 @@
   <td class='latest-post'>
     <%= link_to_latest_post(topic) -%>
   </td>
-  <td class='posts-count'><%= relevant_posts(topic).count %></td>
-  <td class='views-count'><%= topic.views_count %></td>
+  <td class='posts-count'>
+    <%= pluralize(relevant_posts(topic).count, 'Posts') %>
+  </td>
+  <td class='views-count'>
+    <%= pluralize(topic.views_count, 'Views') %>
+  </td>
 </tr>

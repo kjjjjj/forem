@@ -1,6 +1,6 @@
-<h2><%= t('.title', :forum => forum) %></h2>
+<h4><%= t('.title', :forum => forum) %></h4>
 
-<h3><%= t('posts_count', :count => @posts.count, :scope => 'forem.general') %></h3>
+<h4><%= t('posts_count', :count => @posts.count, :scope => 'forem.general') %></h4>
 
 <%= form_tag forem.forum_moderate_posts_url(forum), :method => :put do %>
   <div id='posts'>

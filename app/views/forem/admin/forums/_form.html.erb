@@ -3,7 +3,7 @@
   <%= f.input :title, :input_html => {:class => 'input-xxlarge'}%>
   <%= f.input :description, :as => :text, :input_html => {:rows => 6, :cols => 53, :class => 'input-xxlarge'} %>
 
-  <h3>Moderator Groups</h3>
+  <h4>Moderator Groups</h4>
   <%= f.association :moderators, :as => :check_boxes %>
   <%= f.submit @forum.persisted? ? 'Update Forum' : 'Create Forum', :class => 'btn btn-primary' %>
 <% end %>
